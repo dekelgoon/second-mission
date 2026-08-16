@@ -1,18 +1,18 @@
-const request = require ('request')
-const forecast = require('../../weather-app/utils/forecast')
+const axios = require('axios')
 
-const translation = () => {
-    const url = '' + word
+const translations = () => {
+    const url = 'https://api-free.deepl.com/v2/translate'
 
-    request({ url, json: true}, (error, { body }) => {
+    axios({ url, json: true}, (error, {body}) => {
         if (error) {
             callback ("Unable to connect to translation service!", undefined)
         } else if (body.error) {
             callback ("unable to find location!", undefined)
-        } else {
-            callback (undefined, //.something)
-        }
-    })
-}
+        } else
+            callback (undefined, {
+                translatedWord: body.results.translations.text
+            })
+        })
+    }
 
 module.exports = translations
