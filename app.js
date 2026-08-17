@@ -1,5 +1,5 @@
  const dictionary = require('./utils/dictionary')
- const translation = require('./utils/translation')
+ const translator = require('./utils/translator')
 
  const word = process.argv[2]
  if (!word) {
@@ -9,14 +9,14 @@
         if (error) {
             return console.log(error)
         }
-        translation(definition, synonyms, (error, translationData) => {
+        translator(word, (error, translation) => {
             if (error) {
                 return console.log(error)
             }
 
             console.log(definition)
             console.log(synonym)
-            console.log(translationData)
+            console.log(translation)
     })
  })
 }
